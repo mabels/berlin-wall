@@ -1,22 +1,9 @@
 $(function () {
   var proxy = 'http://mehner.berlin/twitterproxy/';
-  var ticketsUrl = 'doc-is-in.tito.io/cssconfeu/cssconf-eu-2014/checkin_lists/bNvUloJV9EskaoVD1rzrUew/tickets.json';
+  var ticketsUrl = $("[data-tito-url]")[0].getAttribute('data-tito-url');
   var url = proxy + ticketsUrl;
   var greetEvery = 0.5;
   var updateEvery = 2;
-  var greetings = [
-    'Hey, welcome %s!',
-    'Did you know that %s is also here?',
-    'Come say hi to %s',
-    'Welcome to CSSconf EU 2014, %s!',
-    'We are glad to see you, %s!',
-    'Look who just arrived: %s is here!',
-    "Hello %s, we're happy to have you here!",
-    'We are happy to welcome %s at CSSconf EU 2014!',
-    'Say hi to %s!',
-    'Welcome to our conference, %s!',
-    'Please welcome %s to CSSconf EU 2014!'
-  ];
   var template = _.template($('#attendee-template').html());
   var $attendees = $('.attendees');
   var initialized = false;
