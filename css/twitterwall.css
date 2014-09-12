@@ -1,0 +1,42 @@
+.info-wall { position: absolute; top: 0; left: 0; bottom: 0; right: 0; margin: 3rem; border: 5px solid #376184; overflow: hidden; z-index: 2; }
+
+.schedule-buffer { display: none }
+
+.container-v { position: relative; height: 50vh; overflow: hidden; }
+
+.left-column { width: 61.8%; float: left; }
+
+.right-column { display: inline-block; width: 38.2%; }
+
+.left-column, .right-column { z-index: 0; }
+
+/*
+.info-wall-item { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; }
+*/
+
+.hide { display: none; }
+
+#schedule > * { z-index: 1; }
+
+.schedule { border-bottom: 1px solid #ececec; }
+
+.info-wall .schedule-item { padding: 0; margin: 6rem 0 0 0; border-left: none; text-align: center; }
+.info-wall .schedule-item:before { visibility: hidden; }
+
+/*
+.item-time { height: 5rem; width: 5rem; margin: 0 auto 2rem; border-radius: 50%; border: 1px solid #376184; color: #376184; font-size: 1.5rem; line-height: 5rem; }
+.item-time:before { display: block; content: 'next'; margin-top: -1rem; margin-bottom: -3.75rem; font-size: 1rem; font-weight: 300; text-transform: uppercase; }
+*/
+
+.item-title { width: 80%; margin: 0 auto; font-weight: 600; font-style: normal; }
+
+.item-content { width: 80%; margin: 0 auto; font-size: 1.5rem; }
+
+.attendees { max-width: 100%; padding: 0; margin-top: 6rem; text-align: center; }
+.attendees h3 { font-weight: 600; }
+
+.attendee-photo { height: 5rem; width: 5rem; margin: 0 auto; border-radius: 50%; border: 2px solid #376184; }
+
+#twitter-widget-0 { position: relative; width: 100% !important; z-index: 0; }
+
+.twitterwall { position: relative; margin-bottom: 5px; border-left: 1px solid #ececec; z-index: 0; }
