@@ -20,9 +20,9 @@
 
 .schedule { border-bottom: 1px solid #ececec; }
 
-.schedule h2 { font-size: 2.5rem; }
+.schedule h2 { font-size: 3rem; }
 
-.info-wall .schedule-item { padding: 0; margin: 2rem 0 0 0; border-left: none; text-align: center; }
+.info-wall .schedule-item { padding: 0; margin: 7rem 0 0 0; border-left: none; text-align: center; }
 .info-wall .schedule-item:before { visibility: hidden; }
 
 /*
