@@ -160,5 +160,5 @@ if (!css_track) { debugger; }
   getBackendData();
   setInterval(getBackendData, 9*checkForNewItemEvery * 990);
   setInterval(showNextScheduleItem, checkForNewItemEvery * 1000);
-  setTimeout(location.reload.bind(location), 5*60*1000);
+  setTimeout(location.reload.bind(location), 10*60*1000);
 });
