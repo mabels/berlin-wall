@@ -1,7 +1,5 @@
 $(function() {
   $(".info-wall").css("border", "5px solid "+$("[data-border-color]")[0].getAttribute("data-border-color"));
-  $(".item-time").css("border", "1px solid "+$("[data-border-color]")[0].getAttribute("data-border-color"));
-  $(".item-time").css("color", $("[data-border-color]")[0].getAttribute("data-border-color"));
   var checkForNewItemEvery = 60;
   if (window.location.hash.length) {
     var checkForNewItemEvery = 6;
@@ -100,7 +98,7 @@ if (!css_track) { debugger; }
             if (date) {
               track_div.append('<div class="info-wall-item schedule-item" data-time="'+time.replace(/\./g,'')+'" data-date="'+date.replace(/^0/, '').replace(/\//g,'')+'">'+
                   '<h4 class="item-time">'+time+'</h4>'+
-                  '<h2 class="item-title">'+track+":"+title+'</h2>'+
+                  '<h2 class="item-title">'+track+" - "+title+'</h2>'+
                   '</div>')
             }
           }
@@ -160,6 +158,8 @@ if (!css_track) { debugger; }
           break;
         }
       }
+      $(".item-time").css("border", "1px solid "+$("[data-border-color]")[0].getAttribute("data-border-color"));
+      $(".item-time").css("color", $("[data-border-color]")[0].getAttribute("data-border-color"));
     }
   };
 
