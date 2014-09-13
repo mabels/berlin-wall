@@ -87,6 +87,7 @@ $(function() {
             if (speaker == "all") {
               track = "Pause"
             }
+            title = title.replace(/^"+/, '').replace(/"+$/, '')
             var duration = cols[1]
             var css_track = track.replace(/[^a-zA-Z]/g, '')
             var track_div = $('.schedule-buffer [data-track='+css_track+']')
@@ -138,7 +139,7 @@ $(function() {
       });
       for(var i = 0; i < sorter.length; ++i) {
         $("#schedule").append(sorter[i].clone()); 
-        if (sorter[i][0].parent().data('track') == "Pause") {
+        if (sorter[i].parent().data('track') == "Pause") {
           break;
         }
       }

@@ -2,7 +2,7 @@
 
 .schedule-buffer { display: none }
 
-.container-v { position: relative; height: 50vh; overflow: hidden; }
+.container-v { position: relative; height: 84vh; overflow: hidden; }
 
 .left-column { width: 61.8%; float: left; }
 
@@ -20,7 +20,9 @@
 
 .schedule { border-bottom: 1px solid #ececec; }
 
-.info-wall .schedule-item { padding: 0; margin: 3rem 0 0 0; border-left: none; text-align: center; }
+.schedule h2 { font-size: 2.5rem; }
+
+.info-wall .schedule-item { padding: 0; margin: 2rem 0 0 0; border-left: none; text-align: center; }
 .info-wall .schedule-item:before { visibility: hidden; }
 
 /*
