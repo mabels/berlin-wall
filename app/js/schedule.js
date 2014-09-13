@@ -158,7 +158,7 @@ if (!css_track) { debugger; }
   }
   // TEST
   getBackendData();
-  setInterval(getBackendData, checkForNewItemEvery * 990);
+  setInterval(getBackendData, 9*checkForNewItemEvery * 990);
   setInterval(showNextScheduleItem, checkForNewItemEvery * 1000);
   setTimeout(window.location.reload, 5*60*1000);
 });
