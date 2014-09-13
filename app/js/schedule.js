@@ -136,8 +136,23 @@ if (!css_track) { debugger; }
       for (var item in items) {
         sorter.push(items[item].first());
       }
+
+      
       sorter = sorter.sort(function(a, b) {
-        return parseInt(a[0].getAttribute('data-time'),10) - parseInt(b[0].getAttribute('data-time'),10);
+        var orderTrack = function(a) {
+          if (a == "Pause") {
+            return "zzzzzzzzzzzzzzzz";
+          }
+          return a;
+        }
+        var a = a.data('time') + ":" + orderTrack(a.parent().data('track'));
+        var b = b.data('time') + ":" + orderTrack(b.parent().data('track'));
+        if (a < b) {
+          return -1;
+        } else if (a > b) {
+          return 1;
+        } 
+        return 0;
       });
       for(var i = 0; i < sorter.length; ++i) {
         $("#schedule").append(sorter[i].clone()); 
