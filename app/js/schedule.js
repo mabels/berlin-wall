@@ -2,10 +2,16 @@ $(function() {
   $(".info-wall").css("border", "5px solid "+$("[data-border-color]")[0].getAttribute("data-border-color"));
   $(".item-time").css("border", "1px solid "+$("[data-border-color]")[0].getAttribute("data-border-color"));
   $(".item-time").css("color", $("[data-border-color]")[0].getAttribute("data-border-color"));
-  var checkForNewItemEvery = 1;
-  var currentDate = (new Date(2014,8,13,7,32,32))
+  var checkForNewItemEvery = 60;
+  if (window.location.hash.length) {
+    var checkForNewItemEvery = 6;
+    var currentDate = (new Date(2014,8,13,7,32,32))
+  }
   var createDate = function() {
-    return currentDate;
+    if (window.location.hash.length) {
+      return currentDate;
+    }
+    return new Date;
   }
   var scheduleItems = function(csstrack) {
     var now = createDate()
@@ -78,6 +84,9 @@ $(function() {
               var speaker = cols[4]
               var title = cols[5]
             }
+            if (speaker == "all") {
+              track = "Pause"
+            }
             var duration = cols[1]
             var css_track = track.replace(/[^a-zA-Z]/g, '')
             var track_div = $('.schedule-buffer [data-track='+css_track+']')
@@ -93,6 +102,7 @@ $(function() {
             }
           }
         }
+        showNextScheduleItem();
       }
       $.ajax({
           url: url,
@@ -111,35 +121,41 @@ $(function() {
     $('.schedule-buffer [data-track]').each(function() {
       var css_track = $(this).data('track');
       if (!css_track) { return }
-      ++items_count;
-      items[css_track] = findNextScheduleItem(css_track);
+      var tmp = findNextScheduleItem(css_track);
+      if (tmp && tmp.length) {
+        ++items_count;
+        items[css_track] = tmp;
+      }
     });
     if (items_count) {
       $('#schedule .schedule-item').remove();
       var sorter = []
       for (var item in items) {
-        if (item == "Pause") {
-          continue;
-        }
-        sorter.push(item);
+        sorter.push(items[item].first());
       }
-      sorter = sorter.sort();
-      sorter.push("Pause")
+      sorter = sorter.sort(function(a, b) {
+        return parseInt(a[0].getAttribute('data-time'),10) - parseInt(b[0].getAttribute('data-time'),10);
+      });
       for(var i = 0; i < sorter.length; ++i) {
-        $("#schedule").append(items[sorter[i]].clone()); 
+        $("#schedule").append(sorter[i].clone()); 
+        if (sorter[i][0].parent().data('track') == "Pause") {
+          break;
+        }
       }
     }
   };
 
   showNextScheduleItem();
   // TEST
-  setInterval(function() { 
-    currentDate = new Date(currentDate.getTime()+1000*300) 
-    $('body')[0].setAttribute('date-now', currentDate.toString());
-  }, checkForNewItemEvery * 999);
+  if (window.location.hash.length) {
+    setInterval(function() { 
+      currentDate = new Date(currentDate.getTime()+1000*300) 
+      $('body')[0].setAttribute('date-now', currentDate.toString());
+    }, checkForNewItemEvery * 999);
+  }
   // TEST
   getBackendData();
   //setInterval(getBackendData, checkForNewItemEvery * 1000);
   setInterval(showNextScheduleItem, checkForNewItemEvery * 1000);
-  setTimeout(window.location.reload, 60*60*1000);
+  setTimeout(window.location.reload, 5*60*1000);
 });
