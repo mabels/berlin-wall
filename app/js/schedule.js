@@ -15,6 +15,7 @@ $(function() {
   }
   var scheduleItems = function(csstrack) {
     var now = createDate()
+if (!csstrack) { debugger; }
     return $('.schedule-buffer [data-track='+csstrack+'] .schedule-item[data-date='+(now.getMonth()+1)+now.getDate()+now.getFullYear()+']');
   }
 
@@ -73,9 +74,9 @@ $(function() {
 
           time = cols[0].replace(/"/g, '')
           if (time) {
-            if (cols.length == 12) {
+            if (cols.length == 11) {
               var track = "Pause"; 
-              var date = cols[10]
+              var date = cols[8]
               var speaker = ""
               var title = cols[5]
             } else {
@@ -90,6 +91,7 @@ $(function() {
             title = title.replace(/^"+/, '').replace(/"+$/, '')
             var duration = cols[1]
             var css_track = track.replace(/[^a-zA-Z]/g, '')
+if (!css_track) { debugger; }
             var track_div = $('.schedule-buffer [data-track='+css_track+']')
             if (!track_div.length) {
               doc.append('<div data-track="'+css_track+'"></div>')
@@ -156,7 +158,7 @@ $(function() {
   }
   // TEST
   getBackendData();
-  //setInterval(getBackendData, checkForNewItemEvery * 1000);
+  setInterval(getBackendData, checkForNewItemEvery * 990);
   setInterval(showNextScheduleItem, checkForNewItemEvery * 1000);
   setTimeout(window.location.reload, 5*60*1000);
 });
