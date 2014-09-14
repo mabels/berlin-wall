@@ -86,6 +86,9 @@ if (!csstrack) { debugger; }
             if (speaker == "all") {
               track = "Pause"
             }
+            if (speaker == "Curators") {
+              continue;
+            }
             title = title.replace(/^"+/, '').replace(/"+$/, '')
             var duration = cols[1]
             var css_track = track.replace(/[^a-zA-Z]/g, '')
@@ -143,20 +146,24 @@ if (!css_track) { debugger; }
           }
           return a;
         }
-        var a = a.data('time') + ":" + orderTrack(a.parent().data('track'));
-        var b = b.data('time') + ":" + orderTrack(b.parent().data('track'));
-        if (a < b) {
-          return -1;
-        } else if (a > b) {
-          return 1;
-        } 
+        var cmp = [[a.data('time'),b.data('time')], 
+         [orderTrack(a.parent().data('track')), orderTrack(b.parent().data('track'))]];
+        for (var i = 0; i < cmp.length; ++i) {
+          var a = cmp[i][0];
+          var b = cmp[i][1];
+          if (a < b) {
+            return -1;
+          } else if (a > b) {
+            return 1;
+          } 
+        }
         return 0;
       });
       for(var i = 0; i < sorter.length; ++i) {
         $("#schedule").append(sorter[i].clone()); 
-        if (sorter[i].parent().data('track') == "Pause") {
-          break;
-        }
+//        if (sorter[i].parent().data('track') == "Pause") {
+//          break;
+//        }
       }
       $(".item-time").css("border", "1px solid "+$("[data-border-color]")[0].getAttribute("data-border-color"));
       $(".item-time").css("color", $("[data-border-color]")[0].getAttribute("data-border-color"));
